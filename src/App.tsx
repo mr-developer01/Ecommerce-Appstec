@@ -1,10 +1,13 @@
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { CssBaseline, Typography } from '@mui/material';
+import theme from './theme/theme';
 
 function App() {
   return (
-    <>
-      <h1>HELLO</h1>
-    </>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Typography variant="h1">Hello</Typography>
+    </ThemeProvider>
   );
 }
 

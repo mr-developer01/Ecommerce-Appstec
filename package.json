@@ -8,43 +8,39 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "eslint --fix"
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings=0",
+      "prettier --write"
     ],
-    "*.tsx": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.js": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.jsx": [
-      "prettier --write",
-      "eslint --fix"
+    "**/*.{html,json,css,scss,md,mdx}": [
+      "prettier -w"
     ]
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.4",
+    "@mui/material": "^6.4.4",
+    "@mui/styled-engine-sc": "^6.4.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@eslint/js": "^9.19.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.24.1",
-    "@typescript-eslint/parser": "^8.24.1",
     "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.20.1",
-    "eslint-plugin-react": "^7.37.4",
+    "eslint": "^9.19.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
-    "husky": "^8.0.0",
+    "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.1",
     "typescript": "~5.7.2",
