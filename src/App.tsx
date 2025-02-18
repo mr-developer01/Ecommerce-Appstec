@@ -3,15 +3,15 @@ import { CssBaseline, Typography } from '@mui/material';
 import theme from './theme/theme';
 // import { useSelector } from 'react-redux';
 import { useAppSelector } from './hooks/useStore';
-import data from './utils/users.json';
+// import data from './utils/users.json';
 
 function App() {
-  console.log(data);
-  const count = useAppSelector((state) => state.counter.fname);
+  const count = useAppSelector((state) => state.user);
+  console.log(count);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Typography variant="h1">{count}</Typography>
+      <Typography variant="h1">Rahul</Typography>
       <Typography variant="h4">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
         consectetur consequuntur non repellat, dolorum sunt. Reprehenderit,
