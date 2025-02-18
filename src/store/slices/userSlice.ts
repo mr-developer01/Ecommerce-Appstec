@@ -40,8 +40,6 @@ export const userSlice = createSlice({
 });
 // export const { showPaginatedData } = userSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.counter.value;
-// export const selectCountFname = (state: RootState) => state.counter.fname;
 
 export default userSlice.reducer;
