@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# . "$(dirname -- "$0")/_/husky.sh"
+
+# npm test
+# npx --no -- lint-staged
+
+
+npx husky add .husky/pre-commit "npx --no -- lint-staged"
