@@ -11,9 +11,14 @@ import { useEffect, useState } from 'react';
 export default function CustomizedInputBase() {
   const dispatch = useAppDispatch();
   const [searchText, setSearchText] = useState('');
+  console.log(searchText.trim().toLocaleLowerCase().replace(/\s+/g, ''));
 
   useEffect(() => {
-    dispatch(searchedUsers(searchText));
+    console.log('Check-1');
+    dispatch(
+      searchedUsers(searchText.trim().toLocaleLowerCase().replace(/\s+/g, '')),
+    );
+    console.log('Check-2');
   }, [searchText, dispatch]);
 
   return (

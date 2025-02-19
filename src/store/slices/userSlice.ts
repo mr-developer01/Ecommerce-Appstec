@@ -37,13 +37,15 @@ export const userSlice = createSlice({
       if (action.payload === '') {
         return { ...state, copy: state.original };
       }
+
       return {
         ...state,
-        copy: state.copy.filter((user) =>
-          user.firstName
-            .toLocaleLowerCase()
-            .includes(action.payload.toLocaleLowerCase()),
-        ),
+        copy: state.original.filter((user) => {
+          const fullName = (user.firstName + user.lastName)
+            .trim()
+            .toLocaleLowerCase();
+          return fullName.includes(action.payload);
+        }),
       };
     },
   },
