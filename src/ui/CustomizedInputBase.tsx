@@ -8,7 +8,13 @@ import { useAppDispatch } from '../hooks/useStore';
 import { searchedUsers } from '../store/slices/userSlice';
 import { useEffect, useState } from 'react';
 
-export default function CustomizedInputBase() {
+// type TToggleModal = {
+//   setOpen: (bool: boolean) => boolean;
+// };
+
+// type TToggleModalPrev = (prev: boolean) => boolean;
+
+export default function CustomizedInputBase({ setOpen }: any) {
   const dispatch = useAppDispatch();
   const [searchText, setSearchText] = useState('');
   console.log(searchText.trim().toLocaleLowerCase().replace(/\s+/g, ''));
@@ -40,7 +46,12 @@ export default function CustomizedInputBase() {
         <SearchIcon />
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
+      <IconButton
+        color="primary"
+        sx={{ p: '10px' }}
+        aria-label="directions"
+        onClick={() => setOpen((prev: any) => !prev)}
+      >
         <TuneIcon />
       </IconButton>
     </Paper>
