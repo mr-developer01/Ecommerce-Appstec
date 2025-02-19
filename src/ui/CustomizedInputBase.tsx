@@ -4,8 +4,18 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
+import { useAppDispatch } from '../hooks/useStore';
+import { searchedUsers } from '../store/slices/userSlice';
+import { useEffect, useState } from 'react';
 
 export default function CustomizedInputBase() {
+  const dispatch = useAppDispatch();
+  const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    dispatch(searchedUsers(searchText));
+  }, [searchText, dispatch]);
+
   return (
     <Paper
       component="form"
@@ -15,6 +25,11 @@ export default function CustomizedInputBase() {
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search User by name..."
         inputProps={{ 'aria-label': 'search google maps' }}
+        value={searchText}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+          // dispatch(searchedUsers(searchText));
+        }}
       />
       <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />

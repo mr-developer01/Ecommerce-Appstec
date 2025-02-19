@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../appStore';
 import usersData from '../../utils/users.json';
 
@@ -12,9 +12,9 @@ interface IUser {
 }
 
 // type TPaginationIndex = {
-//     start: number,
-//     end: number
-// }
+//   start: number;
+//   end: number;
+// };
 
 // type TUsers = IUser[];
 
@@ -33,12 +33,24 @@ export const userSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    // showPaginatedData: (state, action: PayloadAction<TPaginationIndex>) => {
-    //   return state.copy.slice(1, 40)
-    // }
+    searchedUsers: (state, action: PayloadAction<string>) => {
+      if (action.payload === '') {
+        return { ...state, copy: state.original };
+      }
+      return {
+        ...state,
+        copy: state.copy.filter((user) =>
+          user.firstName
+            .toLocaleLowerCase()
+            .includes(action.payload.toLocaleLowerCase()),
+        ),
+      };
+    },
   },
 });
-// export const { showPaginatedData } = userSlice.actions;
+
+// action: PayloadAction<TPaginationIndex>
+export const { searchedUsers } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.counter.value;
 
