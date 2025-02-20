@@ -7,7 +7,7 @@ export const useAddNewField = () => {
   const users = useAppSelector((state) => state.user.original);
   const dispatch = useAppDispatch();
 
-  const newUserData = users.map((user, index) => {
+  const newUserData: any = users.map((user, index) => {
     const { ...rest } = user;
     return {
       ...rest,

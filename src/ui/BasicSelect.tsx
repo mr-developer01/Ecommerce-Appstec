@@ -23,7 +23,7 @@ export default function BasicSelect({
           id="demo-simple-select"
           value={selected}
           label={label}
-          onChange={setSelected}
+          onChange={(e) => setSelected(e.target.value)}
         >
           {options.map((data: any) => (
             <MenuItem value={data}>{data}</MenuItem>

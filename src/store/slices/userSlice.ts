@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import type { RootState } from '../appStore';
 import usersData from '../../utils/users.json';
+import base from '../reducers/base';
 
 interface IUser {
   firstName: string;
@@ -35,19 +36,21 @@ export const userSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    updateOriginal: (_state, action) => {
-      return {
-        original: action.payload,
-        copy: usersData,
-      };
-    },
+    // updateOriginal: (_state, action) => {
+    //   return {
+    //     original: action.payload,
+    //     copy: usersData,
+    //   };
+    // },
 
-    updateCopy: (state) => {
-      return {
-        ...state,
-        copy: state.original,
-      };
-    },
+    // updateCopy: (state) => {
+    //   return {
+    //     ...state,
+    //     copy: state.original,
+    //   };
+    // },
+
+    ...base,
 
     searchedUsers: (state, action: PayloadAction<string>) => {
       if (action.payload === '') {
