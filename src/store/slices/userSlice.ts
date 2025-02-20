@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../appStore';
+// import type { RootState } from '../appStore';
 import usersData from '../../utils/users.json';
 
 interface IUser {
@@ -9,6 +9,8 @@ interface IUser {
   phone: string;
   address: string;
   age: number;
+  company?: string;
+  jobTitles?: string;
 }
 
 // type TPaginationIndex = {
@@ -33,6 +35,20 @@ export const userSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
+    updateOriginal: (_state, action) => {
+      return {
+        original: action.payload,
+        copy: usersData,
+      };
+    },
+
+    updateCopy: (state) => {
+      return {
+        ...state,
+        copy: state.original,
+      };
+    },
+
     searchedUsers: (state, action: PayloadAction<string>) => {
       if (action.payload === '') {
         return { ...state, copy: state.original };
@@ -48,12 +64,34 @@ export const userSlice = createSlice({
         }),
       };
     },
+
+    filterUsersWithModalData: (state, action) => {
+      const filteredData = state.original.filter((user) => {
+        return (
+          user.age >= action.payload.minAge &&
+          user.age <= action.payload.maxAge &&
+          user.email.endsWith(action.payload.emailEndsWith) &&
+          user.company === action.payload.company &&
+          user.jobTitles === action.payload.jobTitle
+        );
+      });
+
+      return {
+        ...state,
+        copy: filteredData,
+      };
+    },
   },
 });
 
 // action: PayloadAction<TPaginationIndex>
-export const { searchedUsers } = userSlice.actions;
+export const {
+  updateOriginal,
+  updateCopy,
+  searchedUsers,
+  filterUsersWithModalData,
+} = userSlice.actions;
 
-export const selectUser = (state: RootState) => state.counter.value;
+// export const selectUser = (state: RootState) => state.user;
 
 export default userSlice.reducer;

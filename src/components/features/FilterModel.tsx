@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import BasicTextFields from '../../ui/BasicTextFields';
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
@@ -10,9 +9,10 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 800,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '1px solid #000',
+  borderRadius: '10px',
   boxShadow: 24,
   p: 4,
 };
@@ -20,14 +20,10 @@ const style = {
 export default function FilterModel() {
   const toggle = useAppSelector((state) => state.toggle.toggleModal);
   const dispatch = useAppDispatch();
-  // const handleOpen = () => setOpen(true);
-  const handleOpen = () => dispatch(toggling());
-  // const handleClose = () => setOpen(false);
   const handleClose = () => dispatch(toggling());
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={toggle}
         onClose={handleClose}

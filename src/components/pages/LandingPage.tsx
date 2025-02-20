@@ -6,6 +6,7 @@ import { Typography } from '@mui/material';
 
 const LandingPage = () => {
   const { copy } = useAppSelector((state) => state.user);
+  console.log(copy, 'I am copy data...');
 
   if (copy.length === 0) {
     return <Typography>No user found...</Typography>;

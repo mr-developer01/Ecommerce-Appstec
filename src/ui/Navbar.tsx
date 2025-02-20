@@ -4,6 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import CustomizedInputBase from './CustomizedInputBase';
 import FilterModel from '../components/features/FilterModel';
+// import { Link } from 'react-router';
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -15,7 +16,7 @@ export default function Navbar() {
             component="div"
             sx={{ flexGrow: 1, cursor: 'pointer' }}
           >
-            Ecom
+            <a href="/">Ecom</a>
           </Typography>
           <CustomizedInputBase />
         </Toolbar>

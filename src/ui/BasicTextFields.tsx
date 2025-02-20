@@ -1,20 +1,81 @@
-// import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { InputLabel } from '@mui/material';
+import { Button, InputLabel } from '@mui/material';
+import BasicSelect from './BasicSelect';
+import { useAppDispatch } from '../hooks/useStore';
+import { filterUsersWithModalData } from '../store/slices/userSlice';
+import { toggling } from '../store/slices/toggleSlice';
+import { useState } from 'react';
 
 export default function BasicTextFields() {
+  const [gender, setGender] = useState('male');
+  const dispatch = useAppDispatch();
   return (
-    <Box component="form" sx={{}} noValidate autoComplete="off">
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <InputLabel htmlFor="outlined-basic">Email address</InputLabel>
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          type="number"
-          sx={{ width: '4rem', py: '.4rem' }}
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start',
+        // justifyContent: 'start',
+        gap: 3,
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'start',
+          gap: 4,
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <InputLabel htmlFor="outlined-basic">Min Age</InputLabel>
+          <BasicSelect label="age" options={[18, 30, 45]} />
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <InputLabel htmlFor="outlined-basic">Max Age</InputLabel>
+          <BasicSelect label="age" options={[45, 55, 75]} />
+        </Box>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <InputLabel htmlFor="outlined-basic">Email ending with</InputLabel>
+        <TextField id="outlined-basic" variant="outlined" type="number" />
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <InputLabel htmlFor="outlined-basic">Gender</InputLabel>
+        <BasicSelect
+          label="gender"
+          options={['male', 'female', 'others']}
+          selected={gender}
+          setSelected={setGender}
         />
       </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <InputLabel htmlFor="outlined-basic">Company</InputLabel>
+        <BasicSelect />
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <InputLabel htmlFor="outlined-basic">Job titles</InputLabel>
+        <BasicSelect />
+      </Box>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          console.log(gender);
+          dispatch(
+            filterUsersWithModalData({
+              minAge: 20,
+              maxAge: 70,
+              emailEndsWith: '.com',
+              company: 'AppsTec',
+              jobTitle: 'Developer 5',
+            }),
+            dispatch(toggling()),
+          );
+        }}
+      >
+        Submit
+      </Button>
     </Box>
   );
 }
