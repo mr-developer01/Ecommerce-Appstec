@@ -21,7 +21,6 @@ type TToggleModal = {
 };
 
 export default function FilterModel({ open, setOpen }: TToggleModal) {
-  // const [open, setOpen] = React.useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
