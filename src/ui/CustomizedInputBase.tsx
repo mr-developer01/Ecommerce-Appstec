@@ -17,7 +17,6 @@ import { useEffect, useState } from 'react';
 export default function CustomizedInputBase({ setOpen }: any) {
   const dispatch = useAppDispatch();
   const [searchText, setSearchText] = useState('');
-  console.log(searchText.trim().toLocaleLowerCase().replace(/\s+/g, ''));
 
   useEffect(() => {
     console.log('Check-1');
@@ -37,10 +36,7 @@ export default function CustomizedInputBase({ setOpen }: any) {
         placeholder="Search User by name..."
         inputProps={{ 'aria-label': 'search google maps' }}
         value={searchText}
-        onChange={(e) => {
-          setSearchText(e.target.value);
-          // dispatch(searchedUsers(searchText));
-        }}
+        onChange={(e) => setSearchText(e.target.value)}
       />
       <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />

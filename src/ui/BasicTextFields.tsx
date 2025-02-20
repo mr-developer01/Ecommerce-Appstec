@@ -8,12 +8,7 @@ export default function BasicTextFields() {
     <Box component="form" sx={{}} noValidate autoComplete="off">
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <InputLabel htmlFor="outlined-basic">Email address</InputLabel>
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          type="number"
-          sx={{ width: '4rem', py: '.4rem' }}
-        />
+        <TextField type="number" sx={{ width: '4rem', py: '.4rem' }} />
       </Box>
     </Box>
   );
