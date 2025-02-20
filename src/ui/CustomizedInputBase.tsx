@@ -7,23 +7,16 @@ import TuneIcon from '@mui/icons-material/Tune';
 import { useAppDispatch } from '../hooks/useStore';
 import { searchedUsers } from '../store/slices/userSlice';
 import { useEffect, useState } from 'react';
+import { toggling } from '../store/slices/toggleSlice';
 
-// type TToggleModal = {
-//   setOpen: (bool: boolean) => boolean;
-// };
-
-// type TToggleModalPrev = (prev: boolean) => boolean;
-
-export default function CustomizedInputBase({ setOpen }: any) {
+export default function CustomizedInputBase() {
   const dispatch = useAppDispatch();
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    console.log('Check-1');
     dispatch(
       searchedUsers(searchText.trim().toLocaleLowerCase().replace(/\s+/g, '')),
     );
-    console.log('Check-2');
   }, [searchText, dispatch]);
 
   return (
@@ -46,7 +39,7 @@ export default function CustomizedInputBase({ setOpen }: any) {
         color="primary"
         sx={{ p: '10px' }}
         aria-label="directions"
-        onClick={() => setOpen((prev: any) => !prev)}
+        onClick={() => dispatch(toggling())}
       >
         <TuneIcon />
       </IconButton>

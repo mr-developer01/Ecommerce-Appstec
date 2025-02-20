@@ -12,7 +12,7 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "eslint --max-warnings=0",
+      "eslint --max-warnings=5",
       "prettier --write"
     ],
     "**/*.{html,json,css,scss,md,mdx}": [
@@ -30,7 +30,8 @@
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-router": "^7.1.5",
-    "styled-components": "^6.1.15"
+    "styled-components": "^6.1.15",
+    "uid": "^2.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",

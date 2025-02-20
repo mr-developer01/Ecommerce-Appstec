@@ -1,35 +1,31 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import BasicTextFields from '../../ui/BasicTextFields';
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
+import { toggling } from '../../store/slices/toggleSlice';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 800,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '1px solid #000',
+  borderRadius: '10px',
   boxShadow: 24,
   p: 4,
 };
 
-type TToggleModal = {
-  open: boolean;
-  setOpen: (bool: boolean) => void;
-};
-
-export default function FilterModel({ open, setOpen }: TToggleModal) {
-  // const [open, setOpen] = React.useState(true);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export default function FilterModel() {
+  const toggle = useAppSelector((state) => state.toggle.toggleModal);
+  const dispatch = useAppDispatch();
+  const handleClose = () => dispatch(toggling());
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
-        open={open}
+        open={toggle}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
