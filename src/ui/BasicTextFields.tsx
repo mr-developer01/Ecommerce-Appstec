@@ -57,7 +57,7 @@ export default function BasicTextFields() {
         <TextField
           id="outlined-basic"
           variant="outlined"
-          type="number"
+          type="text"
           value={emailEndsWith}
           onChange={(e) => setEmailEndsWith(e.target.value)}
         />
@@ -92,21 +92,14 @@ export default function BasicTextFields() {
       <Button
         variant="outlined"
         onClick={() => {
-          console.log(
-            gender,
-            typeof minAge,
-            typeof maxAge,
-            emailEndsWith,
-            company,
-            jobTitle,
-          );
+          console.log(gender, minAge, maxAge, emailEndsWith, company, jobTitle);
           dispatch(
             filterUsersWithModalData({
-              minAge: 20,
-              maxAge: 70,
-              emailEndsWith: '.com',
-              company: 'AppsTec',
-              jobTitle: 'Developer 5',
+              minAge,
+              maxAge,
+              emailEndsWith,
+              company,
+              jobTitle,
             }),
             dispatch(toggling()),
           );

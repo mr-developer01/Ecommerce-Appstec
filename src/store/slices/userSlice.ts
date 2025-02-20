@@ -11,7 +11,7 @@ interface IUser {
   address: string;
   age: number;
   company?: string;
-  jobTitles?: string;
+  jobTitle?: string;
 }
 
 // type TPaginationIndex = {
@@ -69,20 +69,67 @@ export const userSlice = createSlice({
     },
 
     filterUsersWithModalData: (state, action) => {
-      const filteredData = state.original.filter((user) => {
-        return (
-          user.age >= action.payload.minAge &&
-          user.age <= action.payload.maxAge &&
-          user.email.endsWith(action.payload.emailEndsWith) &&
-          user.company === action.payload.company &&
-          user.jobTitles === action.payload.jobTitle
-        );
-      });
+      if (
+        action.payload.minAge === '' &&
+        action.payload.maxAge === '' &&
+        action.payload.emailEndsWith === '' &&
+        action.payload.company === '' &&
+        action.payload.jobTitle === ''
+      ) {
+        console.log('Gendum');
+        return {
+          ...state,
+        };
+      }
 
-      return {
-        ...state,
-        copy: filteredData,
-      };
+      if (
+        action.payload.company &&
+        action.payload.jobTitle &&
+        action.payload.emailEndsWith &&
+        action.payload.company &&
+        action.payload.jobTitle
+      ) {
+        const filteredData = state.original.filter((user) => {
+          return (
+            user.age >= action.payload.minAge &&
+            user.age <= action.payload.maxAge &&
+            user.email.endsWith(action.payload.emailEndsWith) &&
+            user.company === action.payload.company &&
+            user.jobTitle === action.payload.jobTitle
+          );
+        });
+
+        return {
+          ...state,
+          copy: filteredData,
+        };
+      }
+
+      if (action.payload.minAge && action.payload.maxAge) {
+        const filteredData = state.original.filter((user) => {
+          return (
+            user.age >= action.payload.minAge &&
+            user.age <= action.payload.maxAge
+          );
+        });
+        return {
+          ...state,
+          copy: filteredData,
+        };
+      }
+
+      if (action.payload.company && action.payload.jobTitle) {
+        const filteredData = state.original.filter((user) => {
+          return (
+            user.company === action.payload.company &&
+            user.jobTitle === action.payload.jobTitle
+          );
+        });
+        return {
+          ...state,
+          copy: filteredData,
+        };
+      }
     },
   },
 });

@@ -12,7 +12,7 @@ export const useAddNewField = () => {
     return {
       ...rest,
       company: 'AppsTec',
-      jobTitles: 'Developer ' + index,
+      jobTitle: 'Developer ' + index,
     };
   });
 
