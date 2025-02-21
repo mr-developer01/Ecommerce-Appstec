@@ -79,6 +79,7 @@ export const userSlice = createSlice({
         console.log('Gendum');
         return {
           ...state,
+          copy: state.original,
         };
       }
 
