@@ -76,7 +76,6 @@ export const userSlice = createSlice({
         action.payload.company === '' &&
         action.payload.jobTitle === ''
       ) {
-        console.log('Gendum');
         return {
           ...state,
           copy: state.original,
@@ -141,6 +140,7 @@ export const {
   updateCopy,
   searchedUsers,
   filterUsersWithModalData,
+  updateCopyForPagination,
 } = userSlice.actions;
 
 // export const selectUser = (state: RootState) => state.user;

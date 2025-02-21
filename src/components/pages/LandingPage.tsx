@@ -3,11 +3,18 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import { useAppSelector } from '../../hooks/useStore';
 import { Typography } from '@mui/material';
+import { usePagination } from '../../hooks/usePagination';
+import { useState } from 'react';
+import { useAddNewField } from '../../hooks/useAddNewField';
 
 const LandingPage = () => {
   const { copy } = useAppSelector((state) => state.user);
-  console.log(copy, 'I am copy data...');
-
+  const { toggleModal } = useAppSelector((state) => state.toggle);
+  const [skip] = useState(0);
+  useAddNewField();
+  console.log(copy);
+  usePagination(copy, skip, toggleModal);
+  console.log('Mai v call hua hu!!!');
   if (copy.length === 0) {
     return <Typography>No user found...</Typography>;
   }

@@ -93,6 +93,9 @@ export default function BasicTextFields() {
         variant="outlined"
         onClick={() => {
           console.log(gender, minAge, maxAge, emailEndsWith, company, jobTitle);
+
+          dispatch(toggling());
+
           dispatch(
             filterUsersWithModalData({
               minAge,
@@ -101,7 +104,6 @@ export default function BasicTextFields() {
               company,
               jobTitle,
             }),
-            dispatch(toggling()),
           );
         }}
       >

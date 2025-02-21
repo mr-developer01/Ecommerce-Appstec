@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import { updateCopyForPagination } from '../store/slices/userSlice';
+import { useAppDispatch } from './useStore';
+
 interface IUser {
   firstName: string;
   lastName: string;
@@ -5,17 +9,20 @@ interface IUser {
   phone: string;
   address: string;
   age: number;
+  company?: string;
+  jobTitle?: string;
 }
 type TUsers = IUser[];
-
-type TSetSkip = (skip: number) => void;
 
 export const usePagination = (
   users: TUsers,
   skip: number,
-  setSkip: TSetSkip,
+  toggleModal: boolean,
 ) => {
-  const maxOutput = users.slice(skip * 20, skip * 20 + 20);
+  const dispatch = useAppDispatch();
+  const maxOutput: any = users.slice(skip * 20, skip * 20 + 20);
 
-  return { maxOutput, setSkip };
+  useEffect(() => {
+    dispatch(updateCopyForPagination(maxOutput));
+  }, [toggleModal]);
 };

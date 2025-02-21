@@ -25,8 +25,10 @@ export default function BasicSelect({
           label={label}
           onChange={(e) => setSelected(e.target.value)}
         >
-          {options.map((data: any) => (
-            <MenuItem value={data}>{data}</MenuItem>
+          {options.map((data: any, index: number) => (
+            <MenuItem key={index} value={data}>
+              {data}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
